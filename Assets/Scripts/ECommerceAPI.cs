@@ -1,0 +1,178 @@
+using UnityEngine;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+
+public class ECommerceAPI : MonoBehaviour
+{
+    private const string OdooUrl = "https://testar1.odoo.com/web/dataset/call_kw";
+    private const string OdooLoginUrl = "https://testar1.odoo.com/web/session/authenticate";
+
+    private const string Username = "admin@gmail.com";
+    private const string Password = "1";
+    private const string DatabaseName = "testar1";
+
+    private string sessionId; // Lưu trữ session ID
+    private static readonly HttpClient client = new HttpClient(); // Dùng HttpClient toàn cục
+
+    async void Start()
+    {
+        // Đăng nhập và lấy danh sách sản phẩm khi bắt đầu
+        await AuthenticateAndGetProducts();
+    }
+
+    // Đăng nhập và lấy danh sách sản phẩm
+    private async Task AuthenticateAndGetProducts()
+    {
+        sessionId = await Authenticate();
+        if (!string.IsNullOrEmpty(sessionId))
+        {
+            Debug.Log("Authentication successful. Session ID: " + sessionId);
+            await GetProductList();
+        }
+        else
+        {
+            Debug.LogError("Authentication failed. Unable to fetch product list.");
+        }
+    }
+
+    // Hàm đăng nhập
+    private async Task<string> Authenticate()
+    {
+        var loginData = new
+        {
+            jsonrpc = "2.0",
+            method = "call",
+            @params = new
+            {
+                db = DatabaseName,
+                login = Username,
+                password = Password
+            },
+            id = (string)null
+        };
+
+        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(loginData);
+        var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+        try
+        {
+            HttpResponseMessage response = await client.PostAsync(OdooLoginUrl, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Lấy session ID từ header Set-Cookie
+                if (response.Headers.TryGetValues("Set-Cookie", out var cookies))
+                {
+                    foreach (var cookie in cookies)
+                    {
+                        if (cookie.Contains("session_id"))
+                        {
+                            string sessionId = cookie.Split(';')[0].Split('=')[1];
+                            return sessionId;
+                        }
+                    }
+                }
+                Debug.LogError("No session ID found in response headers.");
+            }
+            else
+            {
+                Debug.LogError("Login failed: " + response.StatusCode);
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Exception during login: " + e.Message);
+        }
+
+        return null;
+    }
+
+    // Lấy danh sách sản phẩm
+    private async Task GetProductList()
+    {
+        if (string.IsNullOrEmpty(sessionId))
+        {
+            Debug.LogError("Session ID is null or empty. Cannot fetch product list.");
+            return;
+        }
+
+        var requestData = new
+        {
+            jsonrpc = "2.0",
+            method = "call",
+            @params = new
+            {
+                model = "product.template",
+                method = "search_read",
+                args = new object[]
+                {
+                    new object[]
+                    {
+                        new object[] { "sale_ok", "=", true },
+                        new object[] { "website_published", "=", true }
+                    }
+                },
+                kwargs = new
+                {
+                    fields = new[] { "name", "list_price", "default_code" }
+                }
+            },
+            id = 1
+        };
+
+        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(requestData);
+        var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+        try
+        {
+            HttpResponseMessage response = await client.PostAsync(OdooUrl, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Debug.Log("Product List Response: " + responseBody);
+                ProcessResponse(responseBody);
+            }
+            else
+            {
+                Debug.LogError("Error fetching product list: " + response.StatusCode);
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Exception occurred while fetching product list: " + e.Message);
+        }
+    }
+
+    // Xử lý phản hồi danh sách sản phẩm
+    private void ProcessResponse(string responseBody)
+    {
+        try
+        {
+            var jsonResponse = JObject.Parse(responseBody);
+            var products = jsonResponse["result"];
+
+            if (products != null)
+            {
+                foreach (var product in products)
+                {
+                    string name = product["name"].ToString();
+                    string price = product["list_price"].ToString();
+                    string code = product["default_code"].ToString();
+
+                    Debug.Log($"Product Name: {name}, Price: {price}, Code: {code}");
+                }
+            }
+            else
+            {
+                Debug.Log("No products found or response is invalid.");
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Exception during response processing: " + e.Message);
+        }
+    }
+}
