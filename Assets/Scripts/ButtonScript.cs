@@ -5,28 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour
 {
-    public void HomeSceneloader(){
+    public void HomeSceneloader()
+    {
         SceneManager.LoadScene("Home");
     }
 
 
-    public void ARSceneloader(){
+    public void ARSceneloader()
+    {
 
         SceneManager.LoadScene("V5.1");
-}
-    public void Loader(){
+    }
+    public void Loader()
+    {
         SceneManager.LoadScene("Menu");
-}
-    public void AboutSceneLoader(){
+    }
+    public void AboutSceneLoader()
+    {
 
         SceneManager.LoadScene("About page");
-}
-    public void QuitApp(){ 
+    }
+    public void QuitApp()
+    {
         Application.Quit();
 
-}
-    public void Contact(){
-
-        SceneManager.LoadScene("Contact Us");
-        }
+    }
 }
