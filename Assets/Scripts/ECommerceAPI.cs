@@ -119,7 +119,7 @@ public class ECommerceAPI : MonoBehaviour
                 },
                 kwargs = new
                 {
-                    fields = new[] { "name", "list_price", "default_code" }
+                    fields = new[] { "name", "list_price", "default_code", "website_url" }
                 }
             },
             id = 1
@@ -166,13 +166,15 @@ public class ECommerceAPI : MonoBehaviour
                     string name = product["name"].ToString();
                     string price = product["list_price"].ToString();
                     string code = product["default_code"].ToString();
+                    string url = product["website_url"].ToString();
 
                     // Tạo đối tượng Product và thêm vào danh sách
                     productList.Add(new Product
                     {
                         Name = name,
                         Price = price,
-                        Code = code
+                        Code = code,
+                        Url = url
                     });
 
                 }
@@ -194,4 +196,5 @@ public class Product
     public string Name { get; set; }
     public string Price { get; set; }
     public string Code { get; set; }
+    public string Url { get; set; }
 }

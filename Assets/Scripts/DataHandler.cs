@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using System.Linq;
 
 public class DataHandler : MonoBehaviour
 {
@@ -12,6 +15,7 @@ public class DataHandler : MonoBehaviour
 
     // Thêm trường để gắn script ECommerceAPI
     [SerializeField] private ECommerceAPI ecommerceAPI;
+    private string serverUrl = "https://testar1.odoo.com/";
 
     private int currrent_id = 0;
 
@@ -27,6 +31,9 @@ public class DataHandler : MonoBehaviour
             return instance;
         }
     }
+
+    [SerializeField] private Button buyNowButton;
+    [SerializeField] private TextMeshProUGUI priceText;
 
     private async void Start()
     {
@@ -47,14 +54,30 @@ public class DataHandler : MonoBehaviour
         var item_obj = Resources.LoadAll("Items", typeof(Item));
         var productList = ecommerceAPI.productList;
 
+        // Tạo một HashSet để lưu trữ tên sản phẩm đã tồn tại
+        HashSet<string> existingProductNames = new HashSet<string>(productList.Select(p => p.Name));
+
         foreach (var item in item_obj)
         {
             Item currentItem = item as Item;
 
             if (currentItem != null && 
-                (currentItem.name == "a1" || currentItem.name == "a2" || currentItem.name == "z" || currentItem.name == "z1" || 
-                ProductExistsInList(currentItem.name, productList)))
+                (currentItem.name == "a 1" || currentItem.name == "a 2" || currentItem.name == "z" || currentItem.name == "z 1" || 
+                existingProductNames.Contains(currentItem.name)))
             {
+                Product matchingProduct = productList.Find(p => p.Name == currentItem.name);
+                if (matchingProduct != null)
+                {
+                    if (float.TryParse(matchingProduct.Price.ToString(), out float price))
+                    {
+                        currentItem.price = price;
+                        currentItem.url = serverUrl + matchingProduct.Url;
+                    }
+                    else
+                    {
+                        Debug.LogError($"Failed to convert price for item: {currentItem.name}");
+                    }
+                }
                 items.Add(currentItem);
             }
         }
@@ -74,22 +97,23 @@ public class DataHandler : MonoBehaviour
     public void SetFurniture(int id)
     {
         furniture = items[id].itemPrefab;
+        priceText.text = items[id].price.ToString("C");
+        buyNowButton.onClick.RemoveAllListeners();
+
+        // Check if the item name is one of the specified names
+        if (items[id].name == "a 1" || items[id].name == "a 2" || items[id].name == "z" || items[id].name == "z 1")
+        {
+            // Do not add the listener for these items
+            Debug.Log($"Button disabled for item: {items[id].name}");
+        }
+        else
+        {
+            buyNowButton.onClick.AddListener(() => Application.OpenURL(items[id].url));
+        }
     }
 
     public GameObject GetFurniture()
     {
         return furniture;
-    }
-
-    private bool ProductExistsInList(string itemName, List<Product> productList)
-    {
-        foreach (var product in productList)
-        {
-            if (product.Name == itemName)
-            {
-                return true; // Found a match
-            }
-        }
-        return false; // No match found
     }
 }
