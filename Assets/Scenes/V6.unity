@@ -206,7 +206,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 410199910}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.73929
+  m_Size: 0.56598115
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1014,7 +1014,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1141570479}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: HomeSceneloader
         m_Mode: 1
         m_Arguments:
@@ -1073,6 +1073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1141570480}
   - component: {fileID: 1141570479}
+  - component: {fileID: 1141570481}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1110,6 +1111,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1141570481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141570478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b46027f88d8af4a97e9bda5454b419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1198546606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,6 +1585,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 35782a8923d49e142a45aa45e62345fd, type: 2}
   - {fileID: 11400000, guid: 5fe8877b3e38afc4292671655f002cbb, type: 2}
   - {fileID: 11400000, guid: 9b7252260b168e048be3e773c386fa85, type: 2}
+  ecommerceAPI: {fileID: 0}
 --- !u!4 &1923158389
 Transform:
   m_ObjectHideFlags: 0

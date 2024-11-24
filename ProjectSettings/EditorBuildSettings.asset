@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/About page.unity
     guid: ab322d5c21aa26847af6998d24b4dff2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Contact Us.unity
     guid: f66834a8b4631ca4ba1f2ef0850af7d1
   - enabled: 0
