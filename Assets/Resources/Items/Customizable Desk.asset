@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Customizable Desk
   m_EditorClassIdentifier: 
   price: 0
-  itemPrefab: {fileID: 8599998534506240824, guid: 16f0f36fc8c0801448532422283bfdb2,
+  itemPrefab: {fileID: 7311832385163263719, guid: 16f0f36fc8c0801448532422283bfdb2,
     type: 3}
   itemImage: {fileID: 21300000, guid: b9e9ca626fb432e429834ab3f816f67b, type: 3}
+  url: 
