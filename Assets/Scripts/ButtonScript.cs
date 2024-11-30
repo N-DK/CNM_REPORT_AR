@@ -10,16 +10,12 @@ public class ButtonScript : MonoBehaviour
         SceneManager.LoadScene("Home");
     }
 
-
     public void ARSceneloader()
     {
 
         SceneManager.LoadScene("V5.1");
     }
-    public void Loader()
-    {
-        SceneManager.LoadScene("Menu");
-    }
+
     public void AboutSceneLoader()
     {
 

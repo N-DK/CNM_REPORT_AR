@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Large Desk
   m_EditorClassIdentifier: 
   price: 0
-  itemPrefab: {fileID: 6984616750468082539, guid: a9f8793813b512748aa24333d7b93b42,
+  itemPrefab: {fileID: 6074078103929381061, guid: a9f8793813b512748aa24333d7b93b42,
     type: 3}
   itemImage: {fileID: 21300000, guid: 579af6d799d19624b809e10576bc4ffc, type: 3}
+  url: 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cabinet with Doors
   m_EditorClassIdentifier: 
   price: 0
-  itemPrefab: {fileID: 2622909871067307149, guid: cd99ec7153fa1364a8f3205dfa293e51,
+  itemPrefab: {fileID: 7560618680371716376, guid: cd99ec7153fa1364a8f3205dfa293e51,
     type: 3}
   itemImage: {fileID: 21300000, guid: 841e8a91e0339c84aa07b379cd6c5fca, type: 3}
+  url: 

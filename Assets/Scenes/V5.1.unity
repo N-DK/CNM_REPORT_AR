@@ -462,7 +462,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "1. SCAN THE AREA \n\n2. SELECT THE MODEL\n\n3. TAP TO PLACE"
+  m_Text: "1. SCAN THE AREA \n\n2. SELECT THE MODEL\n\n3. TAP TO PLACE\n\n4. TAP
+    TO BUY NOW"
 --- !u!222 &306823359
 CanvasRenderer:
   m_ObjectHideFlags: 0
