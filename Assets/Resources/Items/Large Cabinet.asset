@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d40e2f4eefa3a5488ebd1fd2350c59c, type: 3}
   m_Name: Large Cabinet
   m_EditorClassIdentifier: 
-  price: 0
-  itemPrefab: {fileID: 2655033129862374595, guid: e5fa6e66b2bbd644d8f37e63652aacff,
+  price: 50000
+  itemPrefab: {fileID: 1992145945860821537, guid: bb2ffd706d6bed645bd936155aee2c9f,
     type: 3}
   itemImage: {fileID: 21300000, guid: 3408ca232f738c34cb5e91a69bdebe68, type: 3}
-  url: 
+  url: https://testar2.odoo.com//shop/large-cabinet-7

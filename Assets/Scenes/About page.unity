@@ -524,8 +524,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 26
+    m_Font: {fileID: 12800000, guid: 5ad8879caa32a914fb072cd3200da43d, type: 3}
+    m_FontSize: 27
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -536,7 +536,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Khoa b\u1ECB ngu"
+  m_Text: "Nh\xF3m ph\xE1t tri\u1EC3n \u1EE9ng d\u1EE5ng th\u1EF1c t\u1EBF t\u0103ng
+    c\u01B0\u1EDDng (AR) x\xE2y d\u1EF1ng m\u1ED9t \u1EE9ng d\u1EE5ng gi\xFAp kh\xE1ch
+    h\xE0ng tr\u1EA3i nghi\u1EC7m s\u1EA3n ph\u1EA9m trong kh\xF4ng gian th\u1EF1c
+    t\u1EBF tr\u01B0\u1EDBc khi quy\u1EBFt \u0111\u1ECBnh mua h\xE0ng. \u1EE8ng d\u1EE5ng
+    s\u1EED d\u1EE5ng c\xF4ng ngh\u1EC7 AR \u0111\u1EC3 hi\u1EC3n th\u1ECB s\u1EA3n
+    ph\u1EA9m 3D trong m\xF4i tr\u01B0\u1EDDng ng\u01B0\u1EDDi d\xF9ng, mang \u0111\u1EBFn
+    tr\u1EA3i nghi\u1EC7m mua s\u1EAFm tr\u1EF1c tuy\u1EBFn tr\u1EF1c quan h\u01A1n.\n\n     
+    Th\xE0nh vi\xEAn trong nh\xF3m:\n\n   21134361 - Ng\xF4 \u0110\u0103ng Khoa\n  
+    21114721 - Nguy\u1EC5n \u0110\u1EE9c C\u01B0\u1EDDng\n   21061091 - L\xEA \u0110\xECnh
+    Nam"
 --- !u!222 &962350540
 CanvasRenderer:
   m_ObjectHideFlags: 0

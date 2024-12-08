@@ -7,12 +7,12 @@ using System.Collections.Generic;
 
 public class ECommerceAPI : MonoBehaviour
 {
-    private const string OdooUrl = "https://testar1.odoo.com/web/dataset/call_kw";
-    private const string OdooLoginUrl = "https://testar1.odoo.com/web/session/authenticate";
+    private const string OdooUrl = "https://testar2.odoo.com/web/dataset/call_kw";
+    private const string OdooLoginUrl = "https://testar2.odoo.com/web/session/authenticate";
 
     private const string Username = "admin@gmail.com";
-    private const string Password = "1";
-    private const string DatabaseName = "testar1";
+    private const string Password = "admin";
+    private const string DatabaseName = "testar2";
 
     private string sessionId; // Lưu trữ session ID
     private static readonly HttpClient client = new HttpClient(); // Dùng HttpClient toàn cục

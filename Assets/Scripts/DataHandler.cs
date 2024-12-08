@@ -15,7 +15,7 @@ public class DataHandler : MonoBehaviour
 
     // Thêm trường để gắn script ECommerceAPI
     [SerializeField] private ECommerceAPI ecommerceAPI;
-    private string serverUrl = "https://testar1.odoo.com/";
+    private string serverUrl = "https://testar2.odoo.com/";
 
     private int currrent_id = 0;
 
@@ -61,8 +61,8 @@ public class DataHandler : MonoBehaviour
         {
             Item currentItem = item as Item;
 
-            if (currentItem != null && 
-                (currentItem.name == "a 1" || currentItem.name == "a 2" || currentItem.name == "z" || currentItem.name == "z 1" || 
+            if (currentItem != null &&
+                (currentItem.name == "a 1" || currentItem.name == "a 2" || currentItem.name == "z" || currentItem.name == "z 1" ||
                 existingProductNames.Contains(currentItem.name)))
             {
                 Product matchingProduct = productList.Find(p => p.Name == currentItem.name);
